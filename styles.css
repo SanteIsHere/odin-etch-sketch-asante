@@ -1,4 +1,10 @@
 #grid {
     display: flex;
+    flex-direction: column;
     border: 1px solid black;
+    margin: 100px;
 }
+
+/* .cell:hover {
+    border: 1px dashed blue;
+} */
