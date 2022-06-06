@@ -3,6 +3,8 @@
     flex-direction: column;
     border: 1px solid black;
     margin: 100px;
+    width: 500px;
+    fill: red;
 }
 
 /* .cell:hover {
