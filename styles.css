@@ -9,6 +9,12 @@
     align-items: center;
 }
 
+#options {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 #grid {
     display: flex;
     flex-direction: column;
