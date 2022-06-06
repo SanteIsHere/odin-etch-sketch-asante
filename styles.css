@@ -1,10 +1,20 @@
+/* * {
+    border: 1px solid;
+} */
+
+#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #grid {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    margin: 100px;
+    margin: 10px;
     width: 500px;
-    fill: red;
 }
 
 /* .cell:hover {
