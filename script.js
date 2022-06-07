@@ -36,6 +36,9 @@ function changeGridColor() {
 
 function resetGrid() {
     mainDiv.removeChild(grid)
+    // Remove the cell class rules before replacing in function
+    styleSheet.deleteRule(styleSheet.cssRules.length-1)
+    styleSheet.deleteRule(styleSheet.cssRules.length-1)
     createGrid(defaultRes, defaultColor)
     resDisp.textContent = `${defaultRes}x${defaultRes}`
 }
