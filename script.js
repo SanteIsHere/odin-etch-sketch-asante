@@ -4,9 +4,9 @@ function reconfigGrid() {
     mainDiv.removeChild(grid)
     
     // Remove the cell class rules before replacing in function
-    styleSheet.deleteRule(styleSheet.cssRules.length-1)
-    styleSheet.deleteRule(styleSheet.cssRules.length-1)
-    
+    for (let i = 0; i < 2; i++) {
+        styleSheet.deleteRule(cssRulesLen)
+    }
     // If user input provided and less than or equal
     //  to 100, create the grid with provided argument else 
     //  create the grid with default resolution (16x16)
@@ -23,12 +23,13 @@ function changeGridColor() {
     selColor = document.getElementById("color").value;
     mainDiv.removeChild(grid);
     // Remove the cell class rules before replacing in function
-    styleSheet.deleteRule(styleSheet.cssRules.length-1)
-    styleSheet.deleteRule(styleSheet.cssRules.length-1)
+    for (let i = 0; i < 2; i++) {
+        styleSheet.deleteRule(cssRulesLen)
+    }
     console.log(`After deleting rules:`, styleSheet.cssRules)
     if (res) {
-        console.log("Okay")
-        createGridsolid(res, selColor);
+        console.log(`Resolution: ${res}`)
+        createGrid(res, selColor);
     } else {
         createGrid(defaultRes, selColor);
     }
@@ -37,8 +38,9 @@ function changeGridColor() {
 function resetGrid() {
     mainDiv.removeChild(grid)
     // Remove the cell class rules before replacing in function
-    styleSheet.deleteRule(styleSheet.cssRules.length-1)
-    styleSheet.deleteRule(styleSheet.cssRules.length-1)
+    for (let i = 0; i < 2; i++) {
+        styleSheet.deleteRule(cssRulesLen)
+    }
     createGrid(defaultRes, defaultColor)
     resDisp.textContent = `${defaultRes}x${defaultRes}`
 }
