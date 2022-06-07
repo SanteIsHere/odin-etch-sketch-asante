@@ -26,7 +26,6 @@ function changeGridColor() {
     for (let i = 0; i < 2; i++) {
         styleSheet.deleteRule(cssRulesLen)
     }
-    console.log(`After deleting rules:`, styleSheet.cssRules)
     if (res) {
         console.log(`Resolution: ${res}`)
         createGrid(res, selColor);
