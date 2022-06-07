@@ -15,14 +15,20 @@ function reconfigGrid() {
 }
 
 function changeGridColor() {
-    color = document.getElementById("color").value;
-    console.log(color, typeof color);
+    selColor = document.getElementById("color").value;
+    console.log(selColor, typeof selColor);
     mainDiv.removeChild(grid);
+    console.log(styleSheet.cssRules)
+    // Remove the cell class rules before replacing in function
+    styleSheet.deleteRule(1)
+    styleSheet.deleteRule(1)
+    console.log("After removing rules: ", styleSheet.cssRules);
+    if (res) {
+        createGrid(res, color);
+    } else {
+        createGrid(defaultRes, color);
+    }
     console.log(styleSheet.cssRules);
-    // Remove the cell class rule before replacing in function
-    styleSheet.deleteRule(1);
-    styleSheet.deleteRule(1);
-    createGrid(defaultRes, color);
 }
 
 function createGrid(res, color) {
@@ -45,6 +51,8 @@ function createGrid(res, color) {
         }
         grid.appendChild(row);
     }
+
+    let cssRulesLen = styleSheet.cssRules.length
     styleSheet.insertRule(`.cell {width: 100%; height: 100%; opacity: 0;\
     transition: opacity 2s ease 0.4s, transform 0.8s ease; \ 
     background-color: ${color}}`, 1)
@@ -54,6 +62,7 @@ function createGrid(res, color) {
 
     // Checking the style rules were applied
     console.log(styleSheet.cssRules)
+    console.log(cssRulesLen-1)
 }
 
 // Get the style sheet
@@ -69,7 +78,7 @@ const defaultRes = 16
 const defaultColor = "black"
 
 // User picked color
-let color
+let selColor;
 
 const resDisp = document.getElementById("res")
 
