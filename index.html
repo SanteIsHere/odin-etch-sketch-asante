@@ -8,9 +8,10 @@
         <div id="main">
             <h1 id="head">Etch-a-Sketch!</h1>
             <div id="options">
+                <button id="reset" onclick="resetGrid()">Reset Grid</button>
                 <button id="configure" onclick="reconfigGrid()">Configure Grid</button>
                 <h3>Grid Resolution: <span id="res"></span></h3>
-                <input id="color" type="color" onchange="changeGridColor()">
+                <input id="color" type="color" onchange="changeGridColor()" value="#000000">
             </div>
         </div>
     </body>
