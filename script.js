@@ -10,7 +10,7 @@ function reconfigGrid() {
     // Remove the cell class rules before replacing in function
     styleSheet.deleteRule(styleSheet.cssRules.length-1)
     styleSheet.deleteRule(styleSheet.cssRules.length-1)
-    if (res && (res <= 100) && (res >= 16)) {
+    if (res && (res <= 100)) {
         createGrid(res, defaultColor);
         resDisp.textContent = `${res}x${res}`;
     } else {
@@ -37,6 +37,7 @@ function changeGridColor() {
 function resetGrid() {
     mainDiv.removeChild(grid)
     createGrid(defaultRes, defaultColor)
+    resDisp.textContent = `${defaultRes}x${defaultRes}`
 }
 
 function createGrid(res, color) {
@@ -51,7 +52,7 @@ function createGrid(res, color) {
 
     for (let i = 0; i < res; i++) {
         let row = document.createElement("div")
-        row.setAttribute("style", "display: flex; height: 30px;")
+        row.setAttribute("style", "display: flex; height: 100%;")
         for (let x = 0; x < res; x++) {
             let box = document.createElement("div")
             box.classList.add("cell")
@@ -64,7 +65,6 @@ function createGrid(res, color) {
 
     console.log(styleSheet.cssRules)
     
-    
     // ==== These rules are for a drawing trail effect ==== //
     // styleSheet.insertRule(".cell:hover {opacity: 1; transition: opacity\
     //     0.2s ease; transform: scale(1.04);", cssRulesLen)
@@ -74,7 +74,7 @@ function createGrid(res, color) {
     // background-color: ${color}}`, cssRulesLen)
     
     styleSheet.insertRule(`.cell {width: 100%; height: 100%;\
-        background-color: transparent; border: 2px solid black}`, cssRulesLen)
+        background-color: transparent; border: 0.5px solid black}`, cssRulesLen)
     
     grid.addEventListener("mouseover", function (e) {if (e.target.matches('.cell')) {
         e.target.classList.add('active');
