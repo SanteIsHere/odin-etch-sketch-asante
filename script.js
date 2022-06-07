@@ -1,10 +1,13 @@
 function reconfigGrid() {
     // Get new grid dimensions from user prompt (convert/cast to an integer from string)
-    let res = Number(prompt("Dimensions? (100 or less px plz)"))
+    res = Number(prompt("Dimensions? (100 or less px plz)"))
     mainDiv.removeChild(grid)
     // If user input provided and less than or equal
     //  to 100, createGrid with provided argument else 
     //  createGrid with default resolution (16x16)
+    // Remove the cell class rules before replacing in function
+    styleSheet.deleteRule(styleSheet.cssRules.length-1)
+    styleSheet.deleteRule(styleSheet.cssRules.length-1)
     if (res && res <= 100) {
         createGrid(res, defaultColor);
         resDisp.textContent = `${res}x${res}`;
@@ -16,19 +19,17 @@ function reconfigGrid() {
 
 function changeGridColor() {
     selColor = document.getElementById("color").value;
-    console.log(selColor, typeof selColor);
     mainDiv.removeChild(grid);
-    console.log(styleSheet.cssRules)
     // Remove the cell class rules before replacing in function
-    styleSheet.deleteRule(1)
-    styleSheet.deleteRule(1)
-    console.log("After removing rules: ", styleSheet.cssRules);
+    styleSheet.deleteRule(styleSheet.cssRules.length-1)
+    styleSheet.deleteRule(styleSheet.cssRules.length-1)
+    console.log(`After deleting rules:`, styleSheet.cssRules)
     if (res) {
-        createGrid(res, color);
+        console.log("Okay")
+        createGrid(res, selColor);
     } else {
-        createGrid(defaultRes, color);
+        createGrid(defaultRes, selColor);
     }
-    console.log(styleSheet.cssRules);
 }
 
 function createGrid(res, color) {
@@ -53,16 +54,18 @@ function createGrid(res, color) {
     }
 
     let cssRulesLen = styleSheet.cssRules.length
+
+    console.log(styleSheet.cssRules)
+    
+    styleSheet.insertRule(".cell:hover {opacity: 1; transition: opacity\
+        0.2s ease; transform: scale(1.04);", cssRulesLen)
+
     styleSheet.insertRule(`.cell {width: 100%; height: 100%; opacity: 0;\
     transition: opacity 2s ease 0.4s, transform 0.8s ease; \ 
-    background-color: ${color}}`, 1)
-
-    styleSheet.insertRule(".cell:hover {opacity: 1; transition: opacity\
-    0.2s ease; transform: scale(1.04);", 2)
-
+    background-color: ${color}}`, cssRulesLen)
+    
     // Checking the style rules were applied
     console.log(styleSheet.cssRules)
-    console.log(cssRulesLen-1)
 }
 
 // Get the style sheet
@@ -77,8 +80,9 @@ const defaultRes = 16
 // Default color: black
 const defaultColor = "black"
 
-// User picked color
+// User picked color and resolution
 let selColor;
+let res;
 
 const resDisp = document.getElementById("res")
 
